@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0B73E1D4-024A-496E-8D22-39483ED71192}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Syncfusion.Report.Server.Api.Helper</RootNamespace>
+    <AssemblyName>Syncfusion.Report.Server.Api.Helper</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Http, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Authentication\Authenticate.cs" />
+    <Compile Include="Authentication\OAuth2.cs" />
+    <Compile Include="Authentication\OAuthBase.cs" />
+    <Compile Include="Authentication\RequestExecuter.cs" />
+    <Compile Include="Authentication\DataResponse.cs" />
+    <Compile Include="Authentication\SimpleResponse.cs" />
+    <Compile Include="Authentication\Token.cs" />
+    <Compile Include="ServerApiHelper.cs" />
+    <Compile Include="Utilities\ObjectToDictionaryHelper.cs" />
+    <Compile Include="V1\EndPoints\GroupsEndPoint.cs" />
+    <Compile Include="V1\Models\GroupInfo.cs" />
+    <Compile Include="V1\Models\Group.cs" />
+    <Compile Include="V1\Models\User.cs" />
+    <Compile Include="V1\Models\UserInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="V1\EndPoints\UsersEndPoint.cs" />
+    <Compile Include="V1\Models\GroupList.cs" />
+    <Compile Include="V1\Models\UserList.cs" />
+    <Compile Include="V1\ServerClientV1.cs" />
+    <Compile Include="V2\EndPoints\GroupsEndPoint.cs" />
+    <Compile Include="V2\EndPoints\ItemsEndPoint.cs" />
+    <Compile Include="V2\EndPoints\PermissionsEndPoint.cs" />
+    <Compile Include="V2\EndPoints\UsersEndPoint.cs" />
+    <Compile Include="V2\Models\ApiCategoryAdd.cs" />
+    <Compile Include="V2\Models\ApiCategoryUpdate.cs" />
+    <Compile Include="V2\Models\ApiCsvUserImportRequest.cs" />
+    <Compile Include="V2\Models\ApiCsvUserImportResponse.cs" />
+    <Compile Include="V2\Models\ApiDownloadCsvTemplate.cs" />
+    <Compile Include="V2\Models\ApiExportReport.cs" />
+    <Compile Include="V2\Models\ApiExportReportResponse.cs" />
+    <Compile Include="V2\Models\ApiFileAdd.cs" />
+    <Compile Include="V2\Models\ApiFileUpdate.cs" />
+    <Compile Include="V2\Models\ApiGroupListV2.cs" />
+    <Compile Include="V2\Models\ApiGroupPermissionAdd.cs" />
+    <Compile Include="V2\Models\ApiGroupPermissionDetail.cs" />
+    <Compile Include="V2\Models\ApiGroupUsers.cs" />
+    <Compile Include="V2\Models\ApiGroupV2.cs" />
+    <Compile Include="V2\Models\ApiItemResponse.cs" />
+    <Compile Include="V2\Models\ApiItems.cs" />
+    <Compile Include="V2\Models\ApiReportAdd.cs" />
+    <Compile Include="V2\Models\ApiReportDataSetAdd.cs" />
+    <Compile Include="V2\Models\ApiReportDataSetUpdate.cs" />
+    <Compile Include="V2\Models\ApiReportDataSourceAdd.cs" />
+    <Compile Include="V2\Models\ApiReportDataSourceUpdate.cs" />
+    <Compile Include="V2\Models\ApiReportFavoriteItems.cs" />
+    <Compile Include="V2\Models\ApiReportPublicItems.cs" />
+    <Compile Include="V2\Models\ApiReportUpdate.cs" />
+    <Compile Include="V2\Models\APIResponse.cs" />
+    <Compile Include="V2\Models\ApiSpecifiedItemDetail.cs" />
+    <Compile Include="V2\Models\ApiStatusMessage.cs" />
+    <Compile Include="V2\Models\ApiUpdateFavoriteReport.cs" />
+    <Compile Include="V2\Models\ApiUserActivationRequest.cs" />
+    <Compile Include="V2\Models\ApiUserAdd.cs" />
+    <Compile Include="V2\Models\ApiUserPermissionAdd.cs" />
+    <Compile Include="V2\Models\ApiUserPermissionDetail.cs" />
+    <Compile Include="V2\Models\ApiValidateItemName.cs" />
+    <Compile Include="V2\Models\DatasetMappingInfo.cs" />
+    <Compile Include="V2\Models\DataSourceDefinition.cs" />
+    <Compile Include="V2\Models\DataSourceMappingInfo.cs" />
+    <Compile Include="V2\Models\EnumClass.cs" />
+    <Compile Include="V2\Models\Permission.cs" />
+    <Compile Include="V2\ServerClientV2.cs" />
+    <Compile Include="V3\EndPoints\ScheduleEndPoint.cs" />
+    <Compile Include="V3\Models\ApiDailySchedule.cs" />
+    <Compile Include="V3\Models\ApiHourlySchedule.cs" />
+    <Compile Include="V3\Models\ApiMonthlySchedule.cs" />
+    <Compile Include="V3\Models\ApiMonthlyScheduleCustomRecurrence.cs" />
+    <Compile Include="V3\Models\ApiMonthlyScheduleDayRecurrence.cs" />
+    <Compile Include="V3\Models\ApiScheduleRequest.cs" />
+    <Compile Include="V3\Models\ApiScheduleResponse.cs" />
+    <Compile Include="V3\Models\ApiWeeklySchedule.cs" />
+    <Compile Include="V3\Models\ApiYearlySchedule.cs" />
+    <Compile Include="V3\Models\ApiYearlyScheduleCustomRecurrence.cs" />
+    <Compile Include="V3\Models\ApiYearlyScheduleMonthRecurrence.cs" />
+    <Compile Include="V3\ServerClientV3.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="V1\Models\UserStatus.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
