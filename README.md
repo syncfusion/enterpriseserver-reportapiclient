@@ -1,4 +1,4 @@
-# Syncfusion Dashboard Server #
+# Syncfusion Report Server #
 
 ### How do I get set up? ###
 
