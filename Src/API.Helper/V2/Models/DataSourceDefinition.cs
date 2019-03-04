@@ -1,7 +1,8 @@
 ﻿namespace Syncfusion.Report.Server.Api.Helper.V2.Models
 {
     using System;
-    using System.Xml.Serialization;    
+    using System.Runtime.Serialization;
+    using System.Xml.Serialization;
 
     /// <summary>
     /// Set the type of credentials to secure data
@@ -41,248 +42,150 @@
     /// Datasource definition
     /// </summary>
     [Serializable]
+    [DataContract]
     public class DataSourceDefinition
     {
-        private string connectStringField;
-        private CredentialRetrieval credentialRetrievalField;
-        private bool enabledField;
-        private bool enabledFieldSpecified;
-        private string extensionField;
-        private bool impersonateUserField;
-        private bool impersonateUserFieldSpecified;
-        private bool originalConnectStringExpressionBasedField;
-        private string passwordField;
-        private string promptField;
-        private bool useOriginalConnectStringField;
-        private string userNameField;
-        private bool windowsCredentialsField;
-        private bool windowsCredentialsFieldSpecified;
-
         /// <summary>
         /// Datasource connection string
         /// </summary>
+        [DataMember]
         public string ConnectString
         {
-            get
-            {
-                return this.connectStringField;
-            }
-
-            set
-            {
-                this.connectStringField = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         /// Set the type of credentials to secure data
         /// </summary>
+        [DataMember]
         public CredentialRetrieval CredentialRetrieval
         {
-            get
-            {
-                return this.credentialRetrievalField;
-            }
-
-            set
-            {
-                this.credentialRetrievalField = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         /// Set true if modifying the datasource connection details
         /// </summary>
+        [DataMember]
         public bool Enabled
         {
-            get
-            {
-                return this.enabledField;
-            }
-
-            set
-            {
-                this.enabledField = Convert.ToBoolean(value.ToString().ToLower());
-            }
+            get;
+            set;
         }
 
         /// <summary>
         /// Set true to save the propoerty - (Enabled) in xml file
         /// </summary>
         [XmlIgnore]
+        [DataMember]
         public bool EnabledSpecified
         {
-            get
-            {
-                return this.enabledFieldSpecified;
-            }
-
-            set
-            {
-                this.enabledFieldSpecified = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         /// Specify the Server type
         /// </summary>
+        [DataMember]
         public string Extension
         {
-            get
-            {
-                return this.extensionField;
-            }
-
-            set
-            {
-                this.extensionField = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         /// Set to true to impersonate  the authenticated user after a connection has been made to the datasource
         /// </summary>
+        [DataMember]
         public bool ImpersonateUser
         {
-            get
-            {
-                return this.impersonateUserField;
-            }
-
-            set
-            {
-                this.impersonateUserField = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         /// Set true to save the impersonate user in xml file
         /// </summary>
         [XmlIgnore]
+        [DataMember]
         public bool ImpersonateUserSpecified
         {
-            get
-            {
-                return this.impersonateUserFieldSpecified;
-            }
-
-            set
-            {
-                this.impersonateUserFieldSpecified = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         /// Specifies the original connection string
         /// </summary>
+        [DataMember]
         public bool OriginalConnectStringExpressionBased
         {
-            get
-            {
-                return this.originalConnectStringExpressionBasedField;
-            }
-
-            set
-            {
-                this.originalConnectStringExpressionBasedField = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         /// Specifies the password of connection credentials
         /// </summary>
+        [DataMember]
         public string Password
         {
-            get
-            {
-                return this.passwordField;
-            }
-
-            set
-            {
-                this.passwordField = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         /// Specifies the text that prompts users for a username and password
         /// </summary>
+        [DataMember]
         public string Prompt
         {
-            get
-            {
-                return this.promptField;
-            }
-
-            set
-            {
-                this.promptField = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         /// Specifies whether to use origingal connection string
         /// </summary>
+        [DataMember]
         public bool UseOriginalConnectString
         {
-            get
-            {
-                return this.useOriginalConnectStringField;
-            }
-
-            set
-            {
-                this.useOriginalConnectStringField = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         /// Specifies the username of connection credentials
         /// </summary>
+        [DataMember]
         public string UserName
         {
-            get
-            {
-                return this.userNameField;
-            }
-
-            set
-            {
-                this.userNameField = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         /// Set to true to use Windows credentials when connecting to the datasource
         /// </summary>
+        [DataMember]
         public bool WindowsCredentials
         {
-            get
-            {
-                return this.windowsCredentialsField;
-            }
-
-            set
-            {
-                this.windowsCredentialsField = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         /// Set true to save the windows credentials in xml file
         /// </summary>
         [XmlIgnore]
+        [DataMember]
         public bool WindowsCredentialsSpecified
         {
-            get
-            {
-                return this.windowsCredentialsFieldSpecified;
-            }
-
-            set
-            {
-                this.windowsCredentialsFieldSpecified = value;
-            }
+            get;
+            set;
         }
 
         #region property used in api
@@ -290,6 +193,7 @@
         /// Specify the server type
         /// </summary>
         [XmlIgnore]
+        [DataMember]
         public ServerType ServerType
         {
             get;
