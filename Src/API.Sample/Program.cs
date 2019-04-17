@@ -222,8 +222,9 @@ namespace Syncfusion.Report.Server.API.Sample
             #region Variable declaration to get details of particular items
 
             var reportId = reportItems.Select(i => i.Id).FirstOrDefault(); //Assign the Id of first item in the report list
+            var filterparameterReportId = reportItems.Where(i => i.Name == "Sales Order Detail").Select(i => i.Id).FirstOrDefault();// Assign the Id of the report for filterparameters
             var categoryId = categoryItems.Select(i => i.Id).FirstOrDefault(); //Assign the Id of first item in the category list
-            var datasourceId = datasourceItems.Select(i => i.Id).FirstOrDefault(); //Assign the Id of first item in the datasource list
+            var datasourceId = datasourceItems.Select(i => i.Id).FirstOrDefault(); //Assign the Id of first item in the datasource list 
             var datasetId = datasetItems.Select(i => i.Id).FirstOrDefault(); //Assign the Id of first item in the dataset list
             var scheduleId = scheduleItems.Select(i => i.Id).FirstOrDefault(); //Assign the Id of first item in the schedule list
             var fileId = fileItems.Select(i => i.Id).FirstOrDefault(); //Assign the Id of first item in the file list
@@ -232,29 +233,29 @@ namespace Syncfusion.Report.Server.API.Sample
 
             #region Get item detail
 
-            // Get details of particular report
+           // Get details of particular report
 
-            var reportDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(reportId);
+           var reportDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(reportId);
 
-            // Get details of particular category
+           // Get details of particular category
 
-            var categoryDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(categoryId);
+           var categoryDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(categoryId);
 
-            // Get details of particular datasource
+            //Get details of particular datasource
 
-            var datasourceDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(datasourceId);
+           var datasourceDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(datasourceId);
 
-            // Get details of particular dataset
+           // Get details of particular dataset
 
-            var datasetDetals = v2ApiObject.ItemsEndPoint().GetItemDetail(datasetId);
+           var datasetDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(datasetId);
 
-            // Get details of particular schedule
+           // Get details of particular schedule
 
-            var scheduleDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(scheduleId);
+           var scheduleDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(scheduleId);
 
             // Get details of particular file
 
-            var fileDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(fileId);
+           var fileDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(fileId);
 
             #endregion
 
@@ -531,7 +532,7 @@ namespace Syncfusion.Report.Server.API.Sample
 
             #endregion
 
-            #endregion
+#endregion
 
             #region V2 GROUPS
 
@@ -616,7 +617,7 @@ namespace Syncfusion.Report.Server.API.Sample
 
             #endregion
 
-            #endregion
+#endregion
 
             #region V3
 
@@ -625,7 +626,7 @@ namespace Syncfusion.Report.Server.API.Sample
             var addSchedule = v3ApiObject.ScheduleEndPoint3().AddSchedule(new ApiScheduleRequest
             {
                 Name = "sample schedule",
-                ReportId = Guid.Parse("4a5704e8-05b5-4a64-b077-29444d558b51"),
+                ReportId = reportId,
                 ExportType = "Pdf",
                 StartTime = DateTime.UtcNow.AddHours(1).ToString("yyyy-mm-dd HH:mm:ss"),
                 NeverEnd = true,
@@ -640,10 +641,10 @@ namespace Syncfusion.Report.Server.API.Sample
                 }
             });
 
-            var updateSchedule = v3ApiObject.ScheduleEndPoint3().UpdateSchedule(Guid.Parse("4a5704e8-05b5-4a64-b077-29444d558b51"), new ApiScheduleRequest
+            var updateSchedule = v3ApiObject.ScheduleEndPoint3().UpdateSchedule(scheduleId, new ApiScheduleRequest
             {
                 Name = "sample schedule-update",
-                ReportId = Guid.Parse("4a5704e8-05b5-4a64-b077-29444d558b51"),
+                ReportId = reportId,
                 ExportType = "Word",
                 StartTime = DateTime.Now.ToString("yyyy-mm-ddTHH:mm:ssZ"),
                 NeverEnd = true,
@@ -668,8 +669,8 @@ namespace Syncfusion.Report.Server.API.Sample
 
             var addScheduleV4 = v4ApiObject.ScheduleEndPoint4().AddSchedule(new ApiScheduleRequestV4
             {
-                Name = "Product Line Sales",
-                ReportId = Guid.Parse("4a5704e8-05b5-4a64-b077-29444d558b51"),
+                Name = "Product Line Sales-add",
+                ReportId = reportId,
                 ExportType = "Pdf",
                 StartTime = "2019-02-27 10:40:24",
                 NeverEnd = true,
@@ -700,10 +701,10 @@ namespace Syncfusion.Report.Server.API.Sample
                 }
             });
 
-            var updateScheduleV4 = v4ApiObject.ScheduleEndPoint4().UpdateSchedule(Guid.Parse("199be886-222e-4aa5-87af-e03dc4145b94"), new ApiUpdateScheduleRequestV4
+            var updateScheduleV4 = v4ApiObject.ScheduleEndPoint4().UpdateSchedule(scheduleId, new ApiUpdateScheduleRequestV4
             {
                 Name = "Product - Updated",
-                ReportId = Guid.Parse("4a5704e8-05b5-4a64-b077-29444d558b51"),
+                ReportId = reportId,
                 ExportType = "Word",
                 StartTime = "2019-02-27 10:18:24",
                 NeverEnd = true,
@@ -739,9 +740,9 @@ namespace Syncfusion.Report.Server.API.Sample
 
             #region Schedule Items
 
-            var getscheduleDetails = v4ApiObject.ScheduleEndPoint4().GetScheduleDetail(Guid.Parse("8d981a69-29a3-4f72-802c-74afbadfeeec"));
+            var getscheduleDetails = v4ApiObject.ScheduleEndPoint4().GetScheduleDetail(scheduleId);
 
-            var reportParametersDetails = v4ApiObject.ScheduleEndPoint4().GetReportParameters(Guid.Parse("4a5704e8-05b5-4a64-b077-29444d558b51"));
+            var reportParametersDetails = v4ApiObject.ScheduleEndPoint4().GetReportParameters(reportId);
 
             #endregion
 
@@ -749,27 +750,27 @@ namespace Syncfusion.Report.Server.API.Sample
 
             //Export report to excel format
 
-            var exportReportFilterToExcel = v3ApiObject.ScheduleEndPoint3().ExportReportWithFilter(Guid.Parse("692f393cc-f091-47bc-85d2-e95816c4bef3"), ExportType.Excel.ToString(), "{\"SalesOrderNumber\":[\"SO50751\"]}");
+            var exportReportFilterToExcel = v3ApiObject.ScheduleEndPoint3().ExportReportWithFilter(filterparameterReportId, ExportType.Excel.ToString(), "{\"SalesOrderNumber\":[\"SO50751\"]}");
 
             //Export report to Pdf format
 
-            var exportReportFilterToPdf = v3ApiObject.ScheduleEndPoint3().ExportReportWithFilter(Guid.Parse("92f393cc-f091-47bc-85d2-e95816c4bef3"), ExportType.Pdf.ToString(), "{\"SalesOrderNumber\":[\"SO50751\"]}");
+            var exportReportFilterToPdf = v3ApiObject.ScheduleEndPoint3().ExportReportWithFilter(filterparameterReportId, ExportType.Pdf.ToString(), "{\"SalesOrderNumber\":[\"SO50751\"]}");
 
             //Export report to word format
 
-            var exportReportFilterToWord = v3ApiObject.ScheduleEndPoint3().ExportReportWithFilter(Guid.Parse("92f393cc-f091-47bc-85d2-e95816c4bef3"), ExportType.Word.ToString(), "{\"SalesOrderNumber\":[\"SO50751\"]}");
+            var exportReportFilterToWord = v3ApiObject.ScheduleEndPoint3().ExportReportWithFilter(filterparameterReportId, ExportType.Word.ToString(), "{\"SalesOrderNumber\":[\"SO50751\"]}");
 
             //Export report to PPT format
 
-            var exportReportFilterToPPT = v3ApiObject.ScheduleEndPoint3().ExportReportWithFilter(Guid.Parse("92f393cc-f091-47bc-85d2-e95816c4bef3"), ExportType.PPT.ToString(), "{\"SalesOrderNumber\":[\"SO50751\"]}");
+            var exportReportFilterToPPT = v3ApiObject.ScheduleEndPoint3().ExportReportWithFilter(filterparameterReportId, ExportType.PPT.ToString(), "{\"SalesOrderNumber\":[\"SO50751\"]}");
 
             // Export report to CSV format
 
-            var exportReportFilterToCSV = v3ApiObject.ScheduleEndPoint3().ExportReportWithFilter(Guid.Parse("92f393cc-f091-47bc-85d2-e95816c4bef3"), ExportType.CSV.ToString(), "{\"SalesOrderNumber\":[\"SO50751\"]}");
+            var exportReportFilterToCSV = v3ApiObject.ScheduleEndPoint3().ExportReportWithFilter(filterparameterReportId, ExportType.CSV.ToString(), "{\"SalesOrderNumber\":[\"SO50751\"]}");
 
             // Export report to CSV format
 
-            var exportReportFilterToHtml = v3ApiObject.ScheduleEndPoint3().ExportReportWithFilter(Guid.Parse("92f393cc-f091-47bc-85d2-e95816c4bef3"), ExportType.Html.ToString(), "{\"SalesOrderNumber\":[\"SO50751\"]}");
+            var exportReportFilterToHtml = v3ApiObject.ScheduleEndPoint3().ExportReportWithFilter(filterparameterReportId, ExportType.Html.ToString(), "{\"SalesOrderNumber\":[\"SO50751\"]}");
 
             #endregion
 
@@ -781,16 +782,16 @@ namespace Syncfusion.Report.Server.API.Sample
 
             var addReportV5 = v5ApiObject.ItemsEndPoint().AddReport(new ApiReportAddV5()
             {
-                CategoryId = Guid.Parse("892b3785-d603-4656-810d-2530669b3062"),
-                Name = "testreport2",
+                CategoryId = categoryId,
+                Name = "Test add report",
                 IsPublic = false, //Set ispublic Value to make and remove report Public Access
                 ItemContent = File.ReadAllBytes("../../Sales Order Detail.rdl"),
                 DataSourceMappingInfo = new List<DataSourceMappingInfoV5> {
                     new DataSourceMappingInfoV5
                     {
-                        DataSourceId = Guid.Parse("7b8a16a5-5d96-43b6-989e-49e0d40be0a8"),
-                        Name = "AdventureWorks",
-                        DataSourceName = "AdventureWorks"
+                        //DataSourceId = datasourceDetails.Id, // Either DataSourceId or DataSourceName can be passed.
+                        Name = "AdventureWorks", // Assign the datasource name, in which report is created by using datasource.
+                        DataSourceName = datasourceDetails.Name,
                     }
                 },
             });
@@ -801,16 +802,16 @@ namespace Syncfusion.Report.Server.API.Sample
 
             var updateReportV5 = v5ApiObject.ItemsEndPoint().UpdateReport(new ApiReportUpdateV5()
             {
-                ItemId = Guid.Parse("03fece10-3e91-4767-abc3-2fe426b96dc5"),
+                ItemId = reportId,
                 IsPublic = false,
-                Name = "Testing report update2",
+                Name = "Test update report",
                 ItemContent = File.ReadAllBytes("../../Sales Order Detail.rdl"),
                 DataSourceMappingInfo = new List<DataSourceMappingInfoV5> {
                     new DataSourceMappingInfoV5
                     {
-                        DataSourceId = datasourceDetails.Id,
-                        Name = "AdventureWorks",
-                        DataSourceName = "AdventureWorks"
+                        //DataSourceId = datasourceDetails.Id, //// Either DataSourceId or DataSourceName can be passed.
+                         Name = "AdventureWorks", // Assign the datasource name, in which report is created by using datasource.
+                        DataSourceName = datasourceDetails.Name,
                     }
                 },
             });
@@ -821,10 +822,10 @@ namespace Syncfusion.Report.Server.API.Sample
 
             var updateDatasourceV5 = v5ApiObject.ItemsEndPoint().UpdateDataSource(new ApiReportDataSourceUpdateV5()
             {
-                ItemId = Guid.Parse("7b8a16a5-5d96-43b6-989e-49e0d40be0a8"),
+                ItemId = datasourceDetails.Id,
                 Description = "testing",
-                DataSourceName = "testdata",
-                Name = "TestDataNew"
+                DataSourceName = datasourceDetails.Name,
+                Name = "TestData-Updated"
             });
 
             #endregion
@@ -833,14 +834,14 @@ namespace Syncfusion.Report.Server.API.Sample
 
             var addDatasetV5 = v5ApiObject.ItemsEndPoint().AddDataset(new ApiReportDataSetAddV5()
             {
-                Name = "Test dataset1",
+                Name = "Test add dataset",
                 Description = "Testing purpose",
                 DataSourceMappingInfo = new List<DataSourceMappingInfoV5> {
                     new DataSourceMappingInfoV5
                     {
-                        DataSourceId = Guid.Parse("7b8a16a5-5d96-43b6-989e-49e0d40be0a8"),
-                        Name = "AdventureWorks",
-                        DataSourceName = "AdventureWorks"
+                        //DataSourceId = datasourceDetails.Id, // Either DataSourceId or DataSourceName can be passed.
+                        Name = datasourceDetails.Name,
+                        DataSourceName = datasourceDetails.Name,
                     }
                 },
                 ItemContent = File.ReadAllBytes("../../Sales.rsd")
@@ -852,16 +853,16 @@ namespace Syncfusion.Report.Server.API.Sample
 
             var updateDatasetV5 = v5ApiObject.ItemsEndPoint().UpdateDataset(new ApiReportDataSetUpdateV5()
             {
-                ItemId = Guid.Parse("5f0e8609-985b-4ea3-885b-3f0f28f561e0"),
-                Name = "Test dataset update1",
-                DataSetName = "Test dataset update",
+                ItemId = datasetDetails.Id,
+                Name = "Test dataset update",
+                DataSetName = datasetDetails.Name,
                 Description = "Testing purpose",
                 DataSourceMappingInfo = new List<DataSourceMappingInfoV5> {
                     new DataSourceMappingInfoV5
                     {
-                        DataSourceId = Guid.Parse("7b8a16a5-5d96-43b6-989e-49e0d40be0a8"),
-                        Name = "AdventureWorks",
-                        DataSourceName = "AdventureWorks"
+                        //DataSourceId = datasourceDetails.Id, // Either DataSourceId or DataSourceName can be passed.
+                        Name = datasourceDetails.Name,
+                        DataSourceName = datasourceDetails.Name
                     }
                 },
                 ItemContent = File.ReadAllBytes("../../Sales.rsd")
