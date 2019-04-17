@@ -78,7 +78,7 @@ namespace Syncfusion.Report.Server.API.Sample
                 Username = "sample",
                 FirstName = "uuser",
                 Lastname = "",
-                Email = "sampleuser@syncfusion.com"
+                Email = "sampleuser@example.com"
             });
 
             #endregion
@@ -631,7 +631,7 @@ namespace Syncfusion.Report.Server.API.Sample
                 StartTime = DateTime.UtcNow.AddHours(1).ToString("yyyy-mm-dd HH:mm:ss"),
                 NeverEnd = true,
                 EndAfterOccurrence = 0,
-                ExternalRecipientsList = new List<string> { "rameshkumar.arumugam@syncfusion.com", "rmshkumar362@outlook.com" },
+                ExternalRecipientsList = new List<string> { "sampleuser@example.com", "sampleuser@example.com" },
                 ScheduleType = "Daily",
                 DailySchedule = new ApiDailySchedule
                 {
@@ -649,7 +649,7 @@ namespace Syncfusion.Report.Server.API.Sample
                 StartTime = DateTime.Now.ToString("yyyy-mm-ddTHH:mm:ssZ"),
                 NeverEnd = true,
                 EndAfterOccurrence = 0,
-                ExternalRecipientsList = new List<string> { "rameshkumar.arumugam@syncfusion.com" },
+                ExternalRecipientsList = new List<string> { "sampleuser@example.com" },
                 ScheduleType = "Daily",
                 DailySchedule = new ApiDailySchedule
                 {
@@ -677,7 +677,7 @@ namespace Syncfusion.Report.Server.API.Sample
                 EndAfterOccurrence = 0,
                 GroupList = new List<int> { 1 },
                 UserList = new List<string> { "1" },
-                ExternalRecipientsList = new List<string> { "subha.sukumaran@syncfusion.com" },
+                ExternalRecipientsList = new List<string> { "sampleuser@example.com" },
                 ScheduleType = "Daily",
                 Enabled = true,
                 ReportParameter = new List<ApiReportParameter>()
@@ -711,8 +711,8 @@ namespace Syncfusion.Report.Server.API.Sample
                 EndAfterOccurrence = 0,
                 RemoveGroupList = new List<int> { 1 },
                 RemoveUserList = new List<string> { "1" },
-                RemoveExternalRecipientsList = new List<string> { "subha.sukumaran@syncfusion.com" },
-                ExternalRecipientsList = new List<string> { "subha.sukumaran@syncfusion.com" },
+                RemoveExternalRecipientsList = new List<string> { "sampleuser@example.com" },
+                ExternalRecipientsList = new List<string> { "sampleuser@example.com" },
                 ScheduleType = "Daily",
                 Enabled = true,
                 ReportParameter = new List<ApiReportParameter>()
