@@ -9,6 +9,10 @@ using Syncfusion.Report.Server.Api.Helper.V2.Models;
 using Syncfusion.Report.Server.Api.Helper.V1.Models;
 using Syncfusion.Report.Server.API.Helper;
 using System;
+using Syncfusion.Report.Server.Api.Helper.V4;
+using Syncfusion.Report.Server.Api.Helper.V4.Models;
+using Syncfusion.Report.Server.Api.Helper.V5.Models;
+using Syncfusion.Report.Server.Api.Helper.V5;
 
 namespace Syncfusion.Report.Server.API.Sample
 {
@@ -49,6 +53,20 @@ namespace Syncfusion.Report.Server.API.Sample
 
             #endregion
 
+            #region Connect to version 4
+
+            var v4ApiObject = new ServerClientV4();
+            v4ApiObject.Connect(SyncfusionReportServerUrl, userName, password);
+
+            #endregion
+
+            #region Connect to version 5
+
+            var v5ApiObject = new ServerClientV5();
+            v5ApiObject.Connect(SyncfusionReportServerUrl, userName, password);
+
+            #endregion
+
             #region V1
 
             #region V1 USERS
@@ -60,7 +78,7 @@ namespace Syncfusion.Report.Server.API.Sample
                 Username = "sample",
                 FirstName = "uuser",
                 Lastname = "",
-                Email = "sampleuser@syncfusion.com"
+                Email = "sampleuser@example.com"
             });
 
             #endregion
@@ -90,7 +108,7 @@ namespace Syncfusion.Report.Server.API.Sample
 
             // Update using email id
 
-            // var updateUser = version1ApiObject.UsersEndPoint().UpdateUser(emailId, new User() { FirstName = "user" });
+            //var updateUser = version1ApiObject.UsersEndPoint().UpdateUser(emailId, new User() { FirstName = "user" });
 
             #endregion
 
@@ -204,8 +222,9 @@ namespace Syncfusion.Report.Server.API.Sample
             #region Variable declaration to get details of particular items
 
             var reportId = reportItems.Select(i => i.Id).FirstOrDefault(); //Assign the Id of first item in the report list
+            var filterparameterReportId = reportItems.Where(i => i.Name == "Sales Order Detail").Select(i => i.Id).FirstOrDefault();// Assign the Id of the report for filterparameters
             var categoryId = categoryItems.Select(i => i.Id).FirstOrDefault(); //Assign the Id of first item in the category list
-            var datasourceId = datasourceItems.Select(i => i.Id).FirstOrDefault(); //Assign the Id of first item in the datasource list
+            var datasourceId = datasourceItems.Select(i => i.Id).FirstOrDefault(); //Assign the Id of first item in the datasource list 
             var datasetId = datasetItems.Select(i => i.Id).FirstOrDefault(); //Assign the Id of first item in the dataset list
             var scheduleId = scheduleItems.Select(i => i.Id).FirstOrDefault(); //Assign the Id of first item in the schedule list
             var fileId = fileItems.Select(i => i.Id).FirstOrDefault(); //Assign the Id of first item in the file list
@@ -214,29 +233,29 @@ namespace Syncfusion.Report.Server.API.Sample
 
             #region Get item detail
 
-            // Get details of particular report
+           // Get details of particular report
 
-            var reportDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(reportId);
+           var reportDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(reportId);
 
-            // Get details of particular category
+           // Get details of particular category
 
-            var categoryDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(categoryId);
+           var categoryDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(categoryId);
 
-            // Get details of particular datasource
+            //Get details of particular datasource
 
-            var datasourceDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(datasourceId);
+           var datasourceDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(datasourceId);
 
-            // Get details of particular dataset
+           // Get details of particular dataset
 
-            var datasetDetals = v2ApiObject.ItemsEndPoint().GetItemDetail(datasetId);
+           var datasetDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(datasetId);
 
-            // Get details of particular schedule
+           // Get details of particular schedule
 
-            var scheduleDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(scheduleId);
+           var scheduleDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(scheduleId);
 
             // Get details of particular file
 
-            var fileDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(fileId);
+           var fileDetails = v2ApiObject.ItemsEndPoint().GetItemDetail(fileId);
 
             #endregion
 
@@ -244,7 +263,7 @@ namespace Syncfusion.Report.Server.API.Sample
 
             var getPublicReports = v2ApiObject.ItemsEndPoint().GetPublicItems(ItemType.Report);
 
-            #endregion          
+            #endregion
 
             #region Get favorite report
 
@@ -296,12 +315,12 @@ namespace Syncfusion.Report.Server.API.Sample
                 Name = "Test dataset",
                 Description = "Testing purpose",
                 DataSourceMappingInfo = new List<DataSourceMappingInfo> {
-                    new DataSourceMappingInfo
-                    {
-                        DataSourceId = datasourceDetails.Id,
-                        Name = datasourceDetails.Name
-                    }
-                },
+                      new DataSourceMappingInfo
+                      {
+                          DataSourceId = datasourceDetails.Id,
+                          Name = datasourceDetails.Name
+                      }
+                  },
                 ItemContent = File.ReadAllBytes("../../Sales.rsd")
             });
 
@@ -513,7 +532,7 @@ namespace Syncfusion.Report.Server.API.Sample
 
             #endregion
 
-            #endregion
+#endregion
 
             #region V2 GROUPS
 
@@ -598,7 +617,7 @@ namespace Syncfusion.Report.Server.API.Sample
 
             #endregion
 
-            #endregion
+#endregion
 
             #region V3
 
@@ -612,7 +631,7 @@ namespace Syncfusion.Report.Server.API.Sample
                 StartTime = DateTime.UtcNow.AddHours(1).ToString("yyyy-mm-dd HH:mm:ss"),
                 NeverEnd = true,
                 EndAfterOccurrence = 0,
-                ExternalRecipientsList = new List<string> { "rameshkumar.arumugam@syncfusion.com", "rmshkumar362@outlook.com" },
+                ExternalRecipientsList = new List<string> { "sampleuser@example.com", "sampleuser@example.com" },
                 ScheduleType = "Daily",
                 DailySchedule = new ApiDailySchedule
                 {
@@ -630,7 +649,7 @@ namespace Syncfusion.Report.Server.API.Sample
                 StartTime = DateTime.Now.ToString("yyyy-mm-ddTHH:mm:ssZ"),
                 NeverEnd = true,
                 EndAfterOccurrence = 0,
-                ExternalRecipientsList = new List<string> { "rameshkumar.arumugam@syncfusion.com" },
+                ExternalRecipientsList = new List<string> { "sampleuser@example.com" },
                 ScheduleType = "Daily",
                 DailySchedule = new ApiDailySchedule
                 {
@@ -638,6 +657,215 @@ namespace Syncfusion.Report.Server.API.Sample
                     EveryNdays = 0,
                     EveryWeekday = true
                 }
+            });
+
+            #endregion
+
+            #endregion
+
+            #region V4
+
+            #region schedule
+
+            var addScheduleV4 = v4ApiObject.ScheduleEndPoint4().AddSchedule(new ApiScheduleRequestV4
+            {
+                Name = "Product Line Sales-add",
+                ReportId = reportId,
+                ExportType = "Pdf",
+                StartTime = "2019-02-27 10:40:24",
+                NeverEnd = true,
+                EndAfterOccurrence = 0,
+                GroupList = new List<int> { 1 },
+                UserList = new List<string> { "1" },
+                ExternalRecipientsList = new List<string> { "sampleuser@example.com" },
+                ScheduleType = "Daily",
+                Enabled = true,
+                ReportParameter = new List<ApiReportParameter>()
+                 {
+                     new ApiReportParameter()
+                     {
+                         Name = "ProductCategory",
+                         Values = new List<string> { "2" }
+                     },
+                     new ApiReportParameter()
+                     {
+                         Name = "ProductSubcategory",
+                         Values = new List<string> { "6" }
+                     }
+                 },
+                DailySchedule = new ApiDailySchedule
+                {
+                    RecurrenceType = "EveryWeekday",
+                    EveryNdays = 0,
+                    EveryWeekday = true
+                }
+            });
+
+            var updateScheduleV4 = v4ApiObject.ScheduleEndPoint4().UpdateSchedule(scheduleId, new ApiUpdateScheduleRequestV4
+            {
+                Name = "Product - Updated",
+                ReportId = reportId,
+                ExportType = "Word",
+                StartTime = "2019-02-27 10:18:24",
+                NeverEnd = true,
+                EndAfterOccurrence = 0,
+                RemoveGroupList = new List<int> { 1 },
+                RemoveUserList = new List<string> { "1" },
+                RemoveExternalRecipientsList = new List<string> { "sampleuser@example.com" },
+                ExternalRecipientsList = new List<string> { "sampleuser@example.com" },
+                ScheduleType = "Daily",
+                Enabled = true,
+                ReportParameter = new List<ApiReportParameter>()
+                 {
+                     new ApiReportParameter()
+                     {
+                         Name = "ProductCategory",
+                         Values = new List<string> { "2" }
+                     },
+                     new ApiReportParameter()
+                     {
+                         Name = "ProductSubcategory",
+                         Values = new List<string> { "6","7" }
+                     }
+                 },
+                DailySchedule = new ApiDailySchedule
+                {
+                    RecurrenceType = "EveryWeekday",
+                    EveryNdays = 0,
+                    EveryWeekday = true
+                }
+            });
+
+            #endregion
+
+            #region Schedule Items
+
+            var getscheduleDetails = v4ApiObject.ScheduleEndPoint4().GetScheduleDetail(scheduleId);
+
+            var reportParametersDetails = v4ApiObject.ScheduleEndPoint4().GetReportParameters(reportId);
+
+            #endregion
+
+            #region Export report with filters
+
+            //Export report to excel format
+
+            var exportReportFilterToExcel = v3ApiObject.ScheduleEndPoint3().ExportReportWithFilter(filterparameterReportId, ExportType.Excel.ToString(), "{\"SalesOrderNumber\":[\"SO50751\"]}");
+
+            //Export report to Pdf format
+
+            var exportReportFilterToPdf = v3ApiObject.ScheduleEndPoint3().ExportReportWithFilter(filterparameterReportId, ExportType.Pdf.ToString(), "{\"SalesOrderNumber\":[\"SO50751\"]}");
+
+            //Export report to word format
+
+            var exportReportFilterToWord = v3ApiObject.ScheduleEndPoint3().ExportReportWithFilter(filterparameterReportId, ExportType.Word.ToString(), "{\"SalesOrderNumber\":[\"SO50751\"]}");
+
+            //Export report to PPT format
+
+            var exportReportFilterToPPT = v3ApiObject.ScheduleEndPoint3().ExportReportWithFilter(filterparameterReportId, ExportType.PPT.ToString(), "{\"SalesOrderNumber\":[\"SO50751\"]}");
+
+            // Export report to CSV format
+
+            var exportReportFilterToCSV = v3ApiObject.ScheduleEndPoint3().ExportReportWithFilter(filterparameterReportId, ExportType.CSV.ToString(), "{\"SalesOrderNumber\":[\"SO50751\"]}");
+
+            // Export report to CSV format
+
+            var exportReportFilterToHtml = v3ApiObject.ScheduleEndPoint3().ExportReportWithFilter(filterparameterReportId, ExportType.Html.ToString(), "{\"SalesOrderNumber\":[\"SO50751\"]}");
+
+            #endregion
+
+            #endregion
+
+            #region V5
+
+            #region Add report
+
+            var addReportV5 = v5ApiObject.ItemsEndPoint().AddReport(new ApiReportAddV5()
+            {
+                CategoryId = categoryId,
+                Name = "Test add report",
+                IsPublic = false, //Set ispublic Value to make and remove report Public Access
+                ItemContent = File.ReadAllBytes("../../Sales Order Detail.rdl"),
+                DataSourceMappingInfo = new List<DataSourceMappingInfoV5> {
+                    new DataSourceMappingInfoV5
+                    {
+                        //DataSourceId = datasourceDetails.Id, // Either DataSourceId or DataSourceName can be passed.
+                        Name = "AdventureWorks", // Assign the datasource name, in which report is created by using datasource.
+                        DataSourceName = datasourceDetails.Name,
+                    }
+                },
+            });
+
+            #endregion
+
+            #region Update report
+
+            var updateReportV5 = v5ApiObject.ItemsEndPoint().UpdateReport(new ApiReportUpdateV5()
+            {
+                ItemId = reportId,
+                IsPublic = false,
+                Name = "Test update report",
+                ItemContent = File.ReadAllBytes("../../Sales Order Detail.rdl"),
+                DataSourceMappingInfo = new List<DataSourceMappingInfoV5> {
+                    new DataSourceMappingInfoV5
+                    {
+                        //DataSourceId = datasourceDetails.Id, //// Either DataSourceId or DataSourceName can be passed.
+                         Name = "AdventureWorks", // Assign the datasource name, in which report is created by using datasource.
+                        DataSourceName = datasourceDetails.Name,
+                    }
+                },
+            });
+
+            #endregion
+
+            #region Update datasource
+
+            var updateDatasourceV5 = v5ApiObject.ItemsEndPoint().UpdateDataSource(new ApiReportDataSourceUpdateV5()
+            {
+                ItemId = datasourceDetails.Id,
+                Description = "testing",
+                DataSourceName = datasourceDetails.Name,
+                Name = "TestData-Updated"
+            });
+
+            #endregion
+
+            #region Add dataset
+
+            var addDatasetV5 = v5ApiObject.ItemsEndPoint().AddDataset(new ApiReportDataSetAddV5()
+            {
+                Name = "Test add dataset",
+                Description = "Testing purpose",
+                DataSourceMappingInfo = new List<DataSourceMappingInfoV5> {
+                    new DataSourceMappingInfoV5
+                    {
+                        //DataSourceId = datasourceDetails.Id, // Either DataSourceId or DataSourceName can be passed.
+                        Name = datasourceDetails.Name,
+                        DataSourceName = datasourceDetails.Name,
+                    }
+                },
+                ItemContent = File.ReadAllBytes("../../Sales.rsd")
+            });
+
+            #endregion
+
+            #region Update dataset
+
+            var updateDatasetV5 = v5ApiObject.ItemsEndPoint().UpdateDataset(new ApiReportDataSetUpdateV5()
+            {
+                ItemId = datasetDetails.Id,
+                Name = "Test dataset update",
+                DataSetName = datasetDetails.Name,
+                Description = "Testing purpose",
+                DataSourceMappingInfo = new List<DataSourceMappingInfoV5> {
+                    new DataSourceMappingInfoV5
+                    {
+                        //DataSourceId = datasourceDetails.Id, // Either DataSourceId or DataSourceName can be passed.
+                        Name = datasourceDetails.Name,
+                        DataSourceName = datasourceDetails.Name
+                    }
+                },
+                ItemContent = File.ReadAllBytes("../../Sales.rsd")
             });
 
             #endregion

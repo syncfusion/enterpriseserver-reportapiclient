@@ -135,6 +135,23 @@
     <Compile Include="V3\Models\ApiYearlyScheduleCustomRecurrence.cs" />
     <Compile Include="V3\Models\ApiYearlyScheduleMonthRecurrence.cs" />
     <Compile Include="V3\ServerClientV3.cs" />
+    <Compile Include="V4\EndPoints\ScheduleEndPointV4.cs" />
+    <Compile Include="V4\Models\ApiReportParameter.cs" />
+    <Compile Include="V4\Models\ApiReportParameters.cs" />
+    <Compile Include="V4\Models\ApiScheduleItemDetail.cs" />
+    <Compile Include="V4\Models\ApiScheduleRequestV4.cs" />
+    <Compile Include="V4\Models\ApiUpdateScheduleRequestV4.cs" />
+    <Compile Include="V4\ServerClientV4.cs" />
+    <Compile Include="V5\EndPoints\ItemsEndPoint.cs" />
+    <Compile Include="V5\Models\ApiItemDetailV5.cs" />
+    <Compile Include="V5\Models\ApiReportAddV5.cs" />
+    <Compile Include="V5\Models\ApiReportDataSetAddV5.cs" />
+    <Compile Include="V5\Models\ApiReportDataSetUpdateV5.cs" />
+    <Compile Include="V5\Models\ApiReportDataSourceUpdateV5.cs" />
+    <Compile Include="V5\Models\ApiReportUpdateV5.cs" />
+    <Compile Include="V5\Models\DataSetMappingInfoV5.cs" />
+    <Compile Include="V5\Models\DataSourceMappingInfoV5.cs" />
+    <Compile Include="V5\ServerClientV5.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="V1\Models\UserStatus.cs" />
